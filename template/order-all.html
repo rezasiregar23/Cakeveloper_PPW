@@ -1,0 +1,51 @@
+<div class="container">
+    <h1 class="text-center">All Orders</h1>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Customer</th>
+                        <th>Cake Ordered</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Placed At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if orders|length > 0 %}
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ order.customer_name }}</td>
+                        <td>{{ order.name }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.price * order.quantity }}</td>
+                        <td>{{ order.placed_at }}</td>
+                        {% if user == order.customer_name %}
+                        <td>
+                            <a href=#>detail</a>
+                            <a href=#>cancel</a>
+                        </td>
+                        {% endif%}
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="6"><i>Tidak ada</i></td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1 mt-2">
+            <div class="text-right">
+                <a href="/order-new.php" class="btn btn-sm btn-success">New Order</a>
+            </div>
+        </div>
+    </div>
+</div>
